@@ -36,12 +36,6 @@ window.addEventListener("load", () => {
       console.log(usercheck);
 
       if (usercheck[0].password === password) {
-        
-        // localStorage.setItem(
-        //   "user_profile",
-        //   JSON.stringify(user)
-        // );
-
         form.reset();
         form.classList.remove("was-validated");
 
