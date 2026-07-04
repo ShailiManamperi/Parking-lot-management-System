@@ -35,7 +35,7 @@ window.addEventListener("load", () => {
       const usercheck = data.data;
       console.log(usercheck);
 
-      if (usercheck.password === password) {
+      if (usercheck[0].password === password) {
         
         // localStorage.setItem(
         //   "user_profile",
