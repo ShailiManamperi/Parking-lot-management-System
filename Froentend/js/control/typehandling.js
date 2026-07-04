@@ -1,12 +1,17 @@
 let allTypes = [];
+let editId = null;
 
-const API_BASE = "https://parkinglot-backend.vercel.app/api/types";
+const API = "https://parkinglot-backend.vercel.app/api/types";
 
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
   loadTypes();
 
   const form = document.getElementById("typeForm");
+  const updateForm = document.querySelector("#formUpdate form");
 
+  // =========================
+  // CREATE TYPE
+  // =========================
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -15,21 +20,19 @@ window.addEventListener("load", () => {
       return;
     }
 
+    const payload = {
+      type: document.getElementById("formType").value.trim(),
+      amount: Number(document.getElementById("formAmount").value)
+    };
+
     const btn = form.querySelector("button[type='submit']");
     btn.disabled = true;
     btn.innerHTML = "Saving...";
 
-    const payload = {
-      type: document.getElementById("formType").value,
-      amount: document.getElementById("formAmount").value
-    };
-
     try {
-      const res = await fetch(API_BASE, {
+      const res = await fetch(API, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
 
@@ -38,12 +41,10 @@ window.addEventListener("load", () => {
       if (data.success) {
         form.reset();
         form.classList.remove("was-validated");
-
-        await loadTypes();
-
-        alert("✅ Type added successfully!");
+        loadTypes();
+        alert("✅ Type added successfully");
       } else {
-        alert("❌ Failed to save type");
+        alert("❌ Failed to add type");
       }
 
     } catch (err) {
@@ -52,21 +53,58 @@ window.addEventListener("load", () => {
     }
 
     btn.disabled = false;
-    btn.innerHTML = `<i class="bi bi-send"></i> Save type`;
+    btn.innerHTML = "Save type";
+  });
+
+  // =========================
+  // UPDATE TYPE (MODAL)
+  // =========================
+  updateForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const amount = Number(document.getElementById("modalAmount").value);
+
+    if (!editId) return;
+
+    try {
+      const res = await fetch(`${API}/${editId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount })
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        const modal = bootstrap.Modal.getInstance(
+          document.getElementById("formUpdate")
+        );
+        modal.hide();
+
+        loadTypes();
+        alert("✅ Updated successfully");
+      } else {
+        alert("❌ Update failed");
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("Server error");
+    }
   });
 });
 
-// =====================
+// =========================
 // LOAD TYPES
-// =====================
+// =========================
 async function loadTypes() {
   try {
-    const res = await fetch(API_BASE);
+    const res = await fetch(API);
     const data = await res.json();
 
     if (data.success) {
       allTypes = data.data;
-      renderTypes();
+      renderTable();
     }
 
   } catch (err) {
@@ -74,10 +112,10 @@ async function loadTypes() {
   }
 }
 
-// =====================
+// =========================
 // RENDER TABLE
-// =====================
-function renderTypes() {
+// =========================
+function renderTable() {
   const tbody = document.querySelector("#typesTable tbody");
   tbody.innerHTML = "";
 
@@ -87,7 +125,26 @@ function renderTypes() {
         <td>${index + 1}</td>
         <td>${item.type}</td>
         <td>${item.amount}</td>
+        <td class="text-end">
+          <button class="btn btn-sm btn-primary"
+            onclick="openEdit(${item.id}, ${item.amount})">
+            Edit
+          </button>
+        </td>
       </tr>
     `;
   });
+}
+
+// =========================
+// OPEN MODAL
+// =========================
+function openEdit(id, amount) {
+  editId = id;
+  document.getElementById("modalAmount").value = amount;
+
+  const modal = new bootstrap.Modal(
+    document.getElementById("formUpdate")
+  );
+  modal.show();
 }
