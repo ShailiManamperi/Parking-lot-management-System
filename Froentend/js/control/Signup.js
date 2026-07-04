@@ -27,12 +27,12 @@ window.addEventListener("load", () => {
       const data = await res.json();
       console.log(data);
 
-      if (!data.success || !data.user) {
+      if (!data.success || !data.data) {
         alert("❌ User not found");
         return;
       }
 
-      const usercheck = data.user;
+      const usercheck = data.data;
 
       if (usercheck.password === password) {
         
