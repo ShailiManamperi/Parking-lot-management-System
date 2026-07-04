@@ -33,6 +33,7 @@ window.addEventListener("load", () => {
       }
 
       const usercheck = data.data;
+      console.log(usercheck);
 
       if (usercheck.password === password) {
         
