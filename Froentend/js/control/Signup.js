@@ -17,6 +17,7 @@ window.addEventListener("load", () => {
 
     const email = document.getElementById("loginEmail").value.trim();
     const password = document.getElementById("loginPassword").value.trim();
+    console.log(email,password);
 
     try {
       const res = await fetch(
@@ -24,6 +25,7 @@ window.addEventListener("load", () => {
       );
 
       const data = await res.json();
+      console.log(data);
 
       if (!data.success || !data.user) {
         alert("❌ User not found");
@@ -33,16 +35,11 @@ window.addEventListener("load", () => {
       const usercheck = data.user;
 
       if (usercheck.password === password) {
-        const user = {
-          id: usercheck.id,
-          name: usercheck.name,
-          email: usercheck.email
-        };
-
-        localStorage.setItem(
-          "user_profile",
-          JSON.stringify(user)
-        );
+        
+        // localStorage.setItem(
+        //   "user_profile",
+        //   JSON.stringify(user)
+        // );
 
         form.reset();
         form.classList.remove("was-validated");
