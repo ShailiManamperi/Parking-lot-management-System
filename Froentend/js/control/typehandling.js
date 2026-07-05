@@ -73,6 +73,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!editId) return;
 
     const amount = Number(document.getElementById("modalAmount").value);
+    console.log(amount)
 
     updateBtn.disabled = true;
     updateBtn.innerHTML = "Updating...";
