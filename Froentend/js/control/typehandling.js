@@ -68,7 +68,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // =========================
   // UPDATE TYPE (MODAL)
   // =========================
-  updateForm.addEventListener("submit", async (e) => {
+  updateBtn.addEventListener("click", async (e) =>  {
     e.preventDefault();
     // e.stopPropagation();
 
