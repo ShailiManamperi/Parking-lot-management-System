@@ -4,5 +4,12 @@
     "express": "^5.2.1",
     "mysql2": "^3.22.5",
     "serverless-http": "^4.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.107.0"
+  },
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   }
 }
