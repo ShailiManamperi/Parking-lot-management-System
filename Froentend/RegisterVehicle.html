@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="adminHMD professional admin dashboard template">
-  <title>Type Adding Form</title>
+  <title>Register Vehicle</title>
   <link rel="icon" href="assets/images/favicon/logo.jpg" type="image/png">
 
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -39,10 +39,6 @@
         <a class="nav-link" href="RegisterVehicle.html">
           <span class="nav-icon"><i class="bi bi-ui-checks-grid" aria-hidden="true"></i></span>
           <span class="nav-text">Register Vehicle</span>
-        </a>
-        <a class="nav-link" href="quotations.html">
-          <span class="nav-icon"><i class="bi bi-table" aria-hidden="true"></i></span>
-          <span class="nav-text">Quotations</span>
         </a>
         <a class="nav-link" href="add item.html">
           <span class="nav-icon"><i class="bi bi-ui-checks-grid" aria-hidden="true"></i></span>
@@ -133,8 +129,8 @@
               <span class="page-icon"><i class="bi bi-ui-checks-grid" aria-hidden="true"></i></span>
               <div>
                 <!-- <p class="eyebrow mb-1">Inputs</p> -->
-                <h1 class="h3 mb-1">Type Handling</h1>
-                <p class="text-muted mb-0">Adding & Mange Types.</p>
+                <h1 class="h3 mb-1">Vehicle Registration</h1>
+                <p class="text-muted mb-0">Adding new Vehicle.</p>
               </div>
             </div>
             
@@ -142,17 +138,16 @@
 
           <section class="row g-3">
             <div class="col-12">
-              <form class="panel needs-validation" novalidate id="typeForm">
-                <div class="panel-header"><div><h2 class="h5 mb-1 section-title"><i class="bi bi-ui-checks-grid" aria-hidden="true"></i><span>Type Adding Form</span></h2><p class="text-muted mb-0">Enter the type details to add.</p></div></div>
+              <form class="panel needs-validation" novalidate>
+                <div class="panel-header"><div><h2 class="h5 mb-1 section-title"><i class="bi bi-ui-checks-grid" aria-hidden="true"></i><span>Validation Form</span></h2><p class="text-muted mb-0">Enter the vehicle details to add.</p></div></div>
                 <div class="row g-3">
-                  <div class="col-md-6"><label class="form-label" for="formType">Vehicle Type</label><input class="form-control" id="formType" required><div class="invalid-feedback">Type is required.</div></div>
-                  <div class="col-md-6"><label class="form-label" for="formAmount">Payment</label><input class="form-control" id="formAmount"><div class="invalid-feedback">Amount is required.</div></div>
-                  
-                <div class="d-flex justify-content-end mt-4"><button class="btn btn-primary" type="submit" id="savetype"><i class="bi bi-send" aria-hidden="true"></i> Save type</button></div>
-                <div class="panel-header"><div><h2 class="h5 mb-1 section-title"><i class="bi bi-table" aria-hidden="true"></i><span>Type Table</span></h2><p class="text-muted mb-0">Searchable responsive table for quotess and project data.</p></div><input class="form-control form-control-sm table-search" type="search" placeholder="Search Type" data-table-search="typesTable" aria-label="Search quotation"></div>
-                <div class="table-responsive"><table class="table align-middle mb-0" id="typesTable" data-searchable-table><thead><tr><th>No</th><th>type</th><th>Amount</th><th class="text-end">Action</th></tr></thead><tbody>
-              </tbody></table></div>
-              <div class="modal fade" id="formUpdate" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><form novalidate><div class="modal-header"><h2 class="modal-title h5" id="formModalLabel">Update amount</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"><label class="form-label" for="modalNote">Amount</label><input type="number" class="form-control" id="modalAmount" required><div class="invalid-feedback">A note is required.</div></div><div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button><button id="updateBtn" type="submit" class="btn btn-primary">Update Amount</button></div></form></div></div></div>
+                  <div class="col-md-4"><label class="form-label" for="formVehNo">Vehicle No</label><input class="form-control" id="formVehNo" required><div class="invalid-feedback">Vehicle No is required.</div></div>
+                  <div class="col-md-4"><label class="form-label" for="formType">Vehicle Type</label><select class="form-select" id="formType" required><option value="">Choose Type</option>></select><div class="invalid-feedback">Choose a Type.</div></div>
+                  <div class="col-md-4"><label class="form-label" for="formOwnName">Owner Name</label><input class="form-control" id="formOwnName"><div class="invalid-feedback">Owner name is required.</div></div>
+                  <div class="col-md-4"><label class="form-label" for="formOwnNumber">Contact Number</label><input class="form-control" id="formOwnNumber"><div class="invalid-feedback">Contact Number is required.</div></div>
+                  <div class="col-md-4"><label class="form-label" for="formNic">NIC</label><input class="form-control" id="formNic"><div class="invalid-feedback">Client is required.</div></div></div>
+                  <div class="col-md-4"><label class="form-label" for="formPayType">Payment Type</label><select class="form-select" id="formPayType" required><option value="">Choose type</option><option>Daily</option><option>Weekly</option><option>Monthly</option></select><div class="invalid-feedback">Choose a type.</div></div>
+                <div class="d-flex justify-content-end mt-4"><button class="btn btn-primary" type="submit"><i class="bi bi-send" aria-hidden="true"></i> Submit Vehicle</button></div>
               </form>
             </div>
           </section>
@@ -170,7 +165,7 @@
 
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
-  <script src="js/control/typehandling.js"></script>
+  <script src="js/control/quotation.js"></script>
   <script src="js/control/user-global.js"></script>
 </body>
 </html>
