@@ -72,7 +72,7 @@ window.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     // e.stopPropagation();
 
-    // if (!editId) return;
+     if (!editId) return;
 
     const amount = Number(document.getElementById("modalAmount").value);
     const amt = document.getElementById("modalAmount");
@@ -82,9 +82,11 @@ window.addEventListener("DOMContentLoaded", () => {
     updateBtn.innerHTML = "Updating...";
 
     try {
-      const res = await fetch(`${API}/${editId}`, {
+      const res = await fetch(`${API}?id=${editId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({ amount })
       });
 
