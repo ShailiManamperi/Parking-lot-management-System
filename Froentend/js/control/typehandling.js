@@ -59,40 +59,40 @@ window.addEventListener("DOMContentLoaded", () => {
   // =========================
   // UPDATE TYPE (MODAL)
   // =========================
-  updateForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+//   updateForm.addEventListener("submit", async (e) => {
+//     e.preventDefault();
 
-    const amount = Number(document.getElementById("modalAmount").value);
+//     const amount = Number(document.getElementById("modalAmount").value);
 
-    if (!editId) return;
+//     if (!editId) return;
 
-    try {
-      const res = await fetch(`${API}/${editId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount })
-      });
+//     try {
+//       const res = await fetch(`${API}/${editId}`, {
+//         method: "PUT",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ amount })
+//       });
 
-      const data = await res.json();
+//       const data = await res.json();
 
-      if (data.success) {
-        const modal = bootstrap.Modal.getInstance(
-          document.getElementById("formUpdate")
-        );
-        modal.hide();
+//       if (data.success) {
+//         const modal = bootstrap.Modal.getInstance(
+//           document.getElementById("formUpdate")
+//         );
+//         modal.hide();
 
-        loadTypes();
-        alert("✅ Updated successfully");
-      } else {
-        alert("❌ Update failed");
-      }
+//         loadTypes();
+//         alert("✅ Updated successfully");
+//       } else {
+//         alert("❌ Update failed");
+//       }
 
-    } catch (err) {
-      console.error(err);
-      alert("Server error");
-    }
-  });
-});
+//     } catch (err) {
+//       console.error(err);
+//       alert("Server error");
+//     }
+//   });
+// });
 
 // =========================
 // LOAD TYPES
