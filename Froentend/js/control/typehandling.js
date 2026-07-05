@@ -7,10 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
   loadTypes();
 
   const form = document.getElementById("typeForm");
-  // const updateForm = document.getElementById("formUpdate");
   const updateForm = document.querySelector("#formUpdate form");
-  console.log(updateForm);
-
   const saveBtn = document.getElementById("savetype"); // ✅ your button id
   const updateBtn = document.getElementById("updateBtn");
 
@@ -75,8 +72,6 @@ window.addEventListener("DOMContentLoaded", () => {
      if (!editId) return;
 
     const amount = Number(document.getElementById("modalAmount").value);
-    const amt = document.getElementById("modalAmount");
-    console.log(amount,amt)
 
     updateBtn.disabled = true;
     updateBtn.innerHTML = "Updating...";
@@ -109,7 +104,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     updateBtn.disabled = false;
-    updateBtn.innerHTML = "Save Note";
+    updateBtn.innerHTML = "Update";
   });
 });
 
