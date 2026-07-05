@@ -70,10 +70,11 @@ window.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!editId) return;
+    // if (!editId) return;
 
     const amount = Number(document.getElementById("modalAmount").value);
-    console.log(amount)
+    const amt = document.getElementById("modalAmount");
+    console.log(amount,amt)
 
     updateBtn.disabled = true;
     updateBtn.innerHTML = "Updating...";
