@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
   loadTypes();
 
   const form = document.getElementById("typeForm");
-  const updateForm = document.querySelector("#formUpdate form");
+  const updateForm = document.getElementById("formUpdate");
 
   const saveBtn = document.getElementById("savetype"); // ✅ your button id
   const updateBtn = document.getElementById("updateBtn");
