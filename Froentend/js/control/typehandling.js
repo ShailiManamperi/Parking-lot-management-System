@@ -9,25 +9,32 @@ window.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("typeForm");
   const updateForm = document.querySelector("#formUpdate form");
 
+  const saveBtn = document.getElementById("savetype"); // ✅ your button id
+  const updateBtn = updateForm.querySelector("button[type='submit']");
+
   // =========================
   // CREATE TYPE
   // =========================
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    e.stopImmediatePropagation(); // 🔥 IMPORTANT (prevents modal interference)
 
-    if (!form.checkValidity()) {
+    // ONLY validate visible inputs inside main form area
+    const typeInput = document.getElementById("formType");
+    const amountInput = document.getElementById("formAmount");
+
+    if (!typeInput.value.trim() || !amountInput.value.trim()) {
       form.classList.add("was-validated");
       return;
     }
 
     const payload = {
-      type: document.getElementById("formType").value.trim(),
-      amount: Number(document.getElementById("formAmount").value)
+      type: typeInput.value.trim(),
+      amount: Number(amountInput.value)
     };
 
-    const btn = form.querySelector("button[type='submit']");
-    btn.disabled = true;
-    btn.innerHTML = "Saving...";
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = "Saving...";
 
     try {
       const res = await fetch(API, {
@@ -52,46 +59,52 @@ window.addEventListener("DOMContentLoaded", () => {
       alert("Server error");
     }
 
-    btn.disabled = false;
-    btn.innerHTML = "Save type";
-  });
+    saveBtn.disabled = false;
+    saveBtn.innerHTML = "Save type";
+  }, true); // 🔥 capture phase prevents modal conflict
 
   // =========================
   // UPDATE TYPE (MODAL)
   // =========================
-  // updateForm.addEventListener("submit", async (e) => {
-  //   e.preventDefault();
+  updateForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-  //   const amount = Number(document.getElementById("modalAmount").value);
+    if (!editId) return;
 
-  //   if (!editId) return;
+    const amount = Number(document.getElementById("modalAmount").value);
 
-  //   try {
-  //     const res = await fetch(`${API}/${editId}`, {
-  //       method: "PUT",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ amount })
-  //     });
+    updateBtn.disabled = true;
+    updateBtn.innerHTML = "Updating...";
 
-  //     const data = await res.json();
+    try {
+      const res = await fetch(`${API}/${editId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount })
+      });
 
-  //     if (data.success) {
-  //       const modal = bootstrap.Modal.getInstance(
-  //         document.getElementById("formUpdate")
-  //       );
-  //       modal.hide();
+      const data = await res.json();
 
-  //       loadTypes();
-  //       alert("✅ Updated successfully");
-  //     } else {
-  //       alert("❌ Update failed");
-  //     }
+      if (data.success) {
+        bootstrap.Modal.getInstance(
+          document.getElementById("formUpdate")
+        ).hide();
 
-  //   } catch (err) {
-  //     console.error(err);
-  //     alert("Server error");
-  //   }
-  // });
+        loadTypes();
+        alert("✅ Updated successfully");
+      } else {
+        alert("❌ Update failed");
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("Server error");
+    }
+
+    updateBtn.disabled = false;
+    updateBtn.innerHTML = "Save Note";
+  });
 });
 
 // =========================
@@ -113,7 +126,7 @@ async function loadTypes() {
 }
 
 // =========================
-// RENDER TABLE
+// TABLE RENDER
 // =========================
 function renderTable() {
   const tbody = document.querySelector("#typesTable tbody");
