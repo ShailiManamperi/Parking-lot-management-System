@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const updateForm = document.querySelector("#formUpdate form");
 
   const saveBtn = document.getElementById("savetype"); // ✅ your button id
-  const updateBtn = updateForm.querySelector("button[type='submit']");
+  const updateBtn = document.getElementById("updateBtn");
 
   // =========================
   // CREATE TYPE
