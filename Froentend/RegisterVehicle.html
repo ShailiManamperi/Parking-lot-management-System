@@ -32,11 +32,11 @@
           <span class="nav-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
           <span class="nav-text">Dashboard</span>
         </a>
-        <a class="nav-link active" href="addingtypeform.html" aria-current="page">
+        <a class="nav-link" href="addingtypeform.html">
           <span class="nav-icon"><i class="bi bi-window-stack" aria-hidden="true"></i></span>
           <span class="nav-text">Handle Types</span>
         </a>
-        <a class="nav-link" href="RegisterVehicle.html">
+        <a class="nav-link active" href="RegisterVehicle.html" aria-current="page">
           <span class="nav-icon"><i class="bi bi-ui-checks-grid" aria-hidden="true"></i></span>
           <span class="nav-text">Register Vehicle</span>
         </a>
@@ -146,7 +146,8 @@
                   <div class="col-md-4"><label class="form-label" for="formOwnNumber">Contact Number</label><input class="form-control" id="formOwnNumber"><div class="invalid-feedback">Contact Number is required.</div></div>
                   <div class="col-md-4"><label class="form-label" for="formNic">NIC</label><input class="form-control" id="formNic"><div class="invalid-feedback">Client is required.</div></div>
                   <div class="col-md-4"><label class="form-label" for="formType">Vehicle Type</label><select class="form-select" id="formType" required><option value="">Choose Type</option>></select><div class="invalid-feedback">Choose a Type.</div></div>
-                  <div class="col-md-4"><label class="form-label" for="formPayType">Payment Type</label><select class="form-select" id="formPayType" required><option value="">Choose type</option><option>Daily</option><option>Weekly</option><option>Monthly</option></select><div class="invalid-feedback">Choose a type.</div></div></div>
+                  <div class="col-md-4"><label class="form-label" for="formPayType">Payment Type</label><select class="form-select" id="formPayType" required><option value="">Choose type</option><option>Daily</option><option>Weekly</option><option>Monthly</option></select><div class="invalid-feedback">Choose a type.</div></div>
+                </div>
                 <div class="d-flex justify-content-end mt-4"><button class="btn btn-primary" type="submit"><i class="bi bi-send" aria-hidden="true"></i> Submit Vehicle</button></div>
               </form>
             </div>
@@ -167,5 +168,6 @@
   <script src="assets/js/main.js"></script>
   <script src="js/control/quotation.js"></script>
   <script src="js/control/user-global.js"></script>
+  <script src="js/control/vehicleregister.js"></script>
 </body>
 </html>
