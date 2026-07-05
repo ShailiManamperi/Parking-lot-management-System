@@ -7,7 +7,8 @@ window.addEventListener("DOMContentLoaded", () => {
   loadTypes();
 
   const form = document.getElementById("typeForm");
-  const updateForm = document.getElementById("formUpdate");
+  // const updateForm = document.getElementById("formUpdate");
+  const updateForm = document.querySelector("#formUpdate form");
 
   const saveBtn = document.getElementById("savetype"); // ✅ your button id
   const updateBtn = document.getElementById("updateBtn");
@@ -68,7 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // =========================
   updateForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
 
     // if (!editId) return;
 
